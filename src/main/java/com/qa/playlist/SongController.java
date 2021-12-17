@@ -43,7 +43,7 @@ public class SongController {
 		}
 		
 		@GetMapping("/getByArtist/{artistName}")
-		public ResponseEntity<List<Song>> getSongByType(@PathVariable String artistName){
+		public ResponseEntity<List<Song>> getSongByArtist(@PathVariable String artistName){
 			List<Song> foundSong = this.service.getSongByArtist(artistName);
 			return ResponseEntity.ok(foundSong);
 		}

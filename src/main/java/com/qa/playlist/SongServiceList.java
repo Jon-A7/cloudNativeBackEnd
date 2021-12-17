@@ -48,7 +48,7 @@ public class SongServiceList implements SongService {
 	@Override
 	public List<Song> getSongByArtist(String artistName) {
 		// TODO Auto-generated method stub
-		return null;
+		return null; //this.songs.get(artistName);
 	}
 	
 
