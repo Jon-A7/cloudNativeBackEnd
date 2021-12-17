@@ -3,6 +3,7 @@ package com.qa.playlist;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -84,6 +85,21 @@ public class SongControllerIntegrationTest {
 	@Test
 	void testDelete() throws Exception {
 		this.mvc.perform(delete("/deleteSong/1")).andExpect(status().isNoContent());
+	}
+	
+	@Test
+	void testReplace() throws Exception {
+		Song testSong = new Song("Le Temps", "Fleur Floride", "Tayc");
+		String testSongAsJSON = this.mapper.writeValueAsString(testSong);
+		RequestBuilder req = put("/replace/1").contentType(MediaType.APPLICATION_JSON).content(testSongAsJSON);
+
+		Song testCSong = new Song(1, "Le Temps", "Fleur Floride", "Tayc");
+		String testCSongAsJSON = this.mapper.writeValueAsString(testCSong);
+		ResultMatcher statusFlag = status().isAccepted();
+		ResultMatcher bodyCheck = content().json(testCSongAsJSON);
+
+		// sends request - checks the status - checks the body
+		this.mvc.perform(req).andExpect(statusFlag).andExpect(bodyCheck);
 	}
 	
 	
