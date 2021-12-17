@@ -42,6 +42,12 @@ public class SongController {
 			
 		}
 		
+		@GetMapping("/getByArtist/{artistName}")
+		public ResponseEntity<List<Song>> getSongByType(@PathVariable String artistName){
+			List<Song> foundSong = this.service.getSongByArtist(artistName);
+			return ResponseEntity.ok(foundSong);
+		}
+		
 		@DeleteMapping("/deleteSong/{id}")
 		public ResponseEntity<?> deleteSong(@PathVariable Integer id) {
 			this.service.deleteSong(id);

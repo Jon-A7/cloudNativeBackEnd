@@ -43,6 +43,13 @@ public class SongServiceList implements SongService {
 		
 		return found;
 	}
+
+	
+	@Override
+	public List<Song> getSongByArtist(String artistName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

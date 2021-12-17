@@ -1,6 +1,7 @@
 package com.qa.playlist;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,8 @@ public class SongServiceDB implements SongService {
 	@Override
 	public Song getSong(Integer id) {
 		// WHERE ID=
-		return this.repo.getById(id);
+		Optional<Song> foundSong = this.repo.findById(id); // This method now returns an optional.
+		return foundSong.get();
 	}
 
 	@Override
@@ -44,7 +46,7 @@ public class SongServiceDB implements SongService {
 	@Override
 	public Song replaceSong(Integer id, Song newSong) {
 		// TODO Auto-generated method stub
-		Song currentSong = this.repo.getById(id);
+		Song currentSong = this.repo.findById(id).get();
 		
 		currentSong.setSongTitle(newSong.getSongTitle());
 		currentSong.setArtistName(newSong.getArtistName());
@@ -53,6 +55,14 @@ public class SongServiceDB implements SongService {
 		Song updated = this.repo.save(currentSong);
 		
 		return updated;
+	}
+
+	
+
+	@Override
+	public List<Song> getSongByArtist(String artistName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

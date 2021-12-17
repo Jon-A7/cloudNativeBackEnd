@@ -10,6 +10,7 @@ public interface SongService {
 	
 	List<Song> getAllSongs();
 	
+	List<Song> getSongByArtist(String artistName);
 	
 	void deleteSong(Integer id);
 	
