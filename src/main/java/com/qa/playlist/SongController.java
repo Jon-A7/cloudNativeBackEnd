@@ -1,6 +1,5 @@
 package com.qa.playlist;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +22,6 @@ public class SongController {
 		super();
 		this.service = service;
 	}
-	
-		
-		
-		
 
 		@PostMapping("/createSong")
 		public ResponseEntity<Song> createSong(@RequestBody Song song) {
@@ -45,6 +40,12 @@ public class SongController {
 		public ResponseEntity<List<Song>> getAllSongs(){
 			return ResponseEntity.ok(this.service.getAllSongs());
 			
+		}
+		
+		@GetMapping("/getByArtist/{artistName}")
+		public ResponseEntity<List<Song>> getSongByArtist(@PathVariable String artistName){
+			List<Song> foundSong = this.service.getSongByArtist(artistName);
+			return ResponseEntity.ok(foundSong);
 		}
 		
 		@DeleteMapping("/deleteSong/{id}")
