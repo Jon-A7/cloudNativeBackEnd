@@ -1,11 +1,12 @@
 package com.qa.playlist;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-@Service
+import java.util.ArrayList;
+
+//@Service
 public class SongServiceList implements SongService {
 	private List<Song> songs = new ArrayList<>();
 	
@@ -41,6 +42,13 @@ public class SongServiceList implements SongService {
 		Song found = this.songs.set(id, newSong);
 		
 		return found;
+	}
+
+	
+	@Override
+	public List<Song> getSongByArtist(String artistName) {
+		// TODO Auto-generated method stub
+		return null; //this.songs.get(artistName);
 	}
 	
 

@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS `songs` CASCADE;
+
+CREATE TABLE `songs`(
+	`id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+	`song_name` VARCHAR(70) NOT NULL,
+	`album_title` VARCHAR(70),
+	`artist_name` VARCHAR(70) NOT NULL
+);
